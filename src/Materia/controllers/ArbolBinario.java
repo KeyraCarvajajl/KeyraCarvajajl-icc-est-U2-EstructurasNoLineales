@@ -58,6 +58,24 @@ public class ArbolBinario {
             imprimirArbolPreOrden(node.getRight());
         }
     }
+
+    public boolean buscar(int valor) {
+        return buscar(root, valor);
+    }
+
+    private boolean buscar(Node node, int valor) {
+        if (node == null) {
+            return false;
+        }
+
+        if (valor == node.getValue()) {
+            return true;
+        } else if (valor < node.getValue()) {
+            return buscar(node.getLeft(), valor);
+        } else {
+            return buscar(node.getRight(), valor);
+        }
+    }
 }
 
 
