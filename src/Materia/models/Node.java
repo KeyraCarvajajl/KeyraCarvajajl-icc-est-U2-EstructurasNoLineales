@@ -3,11 +3,13 @@ package Materia.models;
 public class Node {
 
     private int value;
+    private int height;
     private Node left;
     private Node right;
 
     public Node(int value) {
         this.value = value;
+        this.height = 1; 
         this.left = null;
         this.right = null;
     }
@@ -18,6 +20,14 @@ public class Node {
 
     public void setValue(int value) {
         this.value = value;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 
     public Node getLeft() {
@@ -36,8 +46,14 @@ public class Node {
         this.right = right;
     }
 
+    public int getBalanceFactor() {
+        int leftHeight = (left != null) ? left.getHeight() : 0;
+        int rightHeight = (right != null) ? right.getHeight() : 0;
+        return leftHeight - rightHeight;
+    }
+
     @Override
     public String toString() {
-        return "Node{" + "value=" + value + '}';
+        return value + "(h=" + height + ", bf=" + getBalanceFactor() + ")";
     }
 }
